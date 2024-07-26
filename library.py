@@ -57,5 +57,6 @@ def writetext():
 
 
 
-
+writecsv()
+writetext()
 
