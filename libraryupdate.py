@@ -2,7 +2,7 @@ import csv, time
 class Newrecord:
     def __init__(self):
         self.bookdetail = []
-        self.issuerdetail = []
+        # self.issuerdetail = []
         self.timedetail = []
 
     def add_book(self,bookid,bookname,price):
@@ -16,7 +16,7 @@ class Newrecord:
         self.bookid = bookid
         self.issuername = issuername
         self.contact = contact
-        self.issuerdetail.append(f"Book id - {bookid} issued by {issuername} provided contact {contact}")
+        return f"Book id - {bookid} issued by {issuername} provided contact {contact}"
 
     def time(self):
         formated_time = time.strftime("%H:%M:%S %a %Y-%m-%d")
@@ -34,29 +34,50 @@ def createrecord(bookid , bookname , bookprice):
 def createtextrecord(bookid,issuername,issuercontact):
     """text function"""
     with open("issuer.txt","a") as file:
-        a_ = Newrecord()
-        a_.time()
-        a_.issuer(bookid,issuername,issuercontact)
-        tim = a_.timedetail
-        rec = a_.issuerdetail()
-        recc = rec[0]
-        print(recc)
-        file.write(f"{tim} --||-- {recc}")
+        player = Newrecord()
+        player.time()
+        rec = player.issuer(bookid,issuername,issuercontact)
+        tim = player.timedetail
+        print("\n-----"+rec)
+        file.write(f"{tim[0]} --||-- {rec}")
         file.write("\n")
 
-while True:
-    ak = int(input("Enter :-"))
-    if ak == 1:
-        bookid = int(input("Bookid:-"))
-        bookname = input("Book Name:-")
-        pri_ce = int(input("Book Price:-"))
+def searchcsv(bookid,bookname,bookdate):
+    """function to search record..... """
+    f = open("csv_file.csv","r")
+    v = open("issuer.txt","r")
+    lis_csv = []             #input append from csv file
+    lis_txt = []             #input append from text file
+    searchedcsv = False
+    searchtext = False
+    r_o = csv.reader(f,delimiter="#")
+    vread = v.readlines()
+    for row in r_o:
+        print(row)    #123
+        if row[0] == bookid and row[1] == bookname:
+            lis_csv.append(row)
+            searchedcsv = True
+    for row2 in vread:
+        a = row2.split(" ")
+        print(a)
+        if a[2] == bookdate and a[7] == bookid:
+            searchtext = True
+            lis_txt.append(a)
 
-        issuername = input("Issuer Name:-")
-        isucontact = int(input("Issuer contact:-"))
-        createrecord(bookid,bookname,pri_ce)
-        createtextrecord(bookid,issuername,isucontact)
+    if searchedcsv and searchtext:
+        print("Found..")
+        for i in lis_csv:
+            print(i)
+        for i in lis_txt:
+            print(i)
     else:
-        break
+        print("Not Found Fortunately")
+
+    f.close()
+    v.close()
+
+
+searchcsv(456,"Shawshank Khushi","2024-08-01")
 
 
 
