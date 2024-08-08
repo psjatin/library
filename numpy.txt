@@ -1,0 +1,162 @@
+          					#	NUMPY
+import numpy as  np
+np.array(<list>)
+
+np.array(<list>, ndimn = x)   #will give x dimensional array
+
+np.arrage(lower limit,upper limit)  #will work as range() funtion
+
+<arrayobject>.ndim       #will tell dimension of array
+
+					#SPECIAL NUMPY ARRAY
+np.zeroes(shape<(x,y)>,dtype = "float<default>")      #where x--> rows(no of inner list) y--> columns(no of inner list elements)
+
+np.zeroes(s)       #only 1-d array forms with s no of elements in it
+
+np.ones(shape<(x,y)>,dtype = "float<default>")      #where x--> rows(no of inner list) y--> columns(no of inner list elements)
+np.ones(s)       #only 1-d array forms with s no of elements in it
+
+np.empty(shape<(x,y)>,dtype = "float<default>")      #will provide uninitialised array
+
+np.arange(x,y)    #provide array of inputs in range x to y where y is excluded
+
+np.linespace(x,y,num = k)   #will give "k" no. of elements starting with x stopping with y(not included(still show hoga:) ))
+			if endstep = true then end will be included if restep = true (have to be assigned with
+			other variable) it will give  the step btw two element
+		for example           arr, step = np.linspace(1, 10, num=5, retstep=True)
+				print(arr)
+				print(step)                  #output  [ 1.    3.25  5.5   7.75 10.  ]     2.25
+
+					#NUMPY WITH RANDOM
+numpy.random.rand(x,y) #will give array of size xrows and ycolumns with random positive no. in[0,1)
+numpy.random.ranf(x,y)) #will give array of size xrows and ycolumns in tuple form with random positive no. in[0,1) its defferenct with rand
+			because both are present different classes
+
+numpy.random.randint(x,y,total_values = k)  #will give k random elemnts btw[x,y] and form an array
+
+numpy.random.randn(x,y)     #will give values close to 0 both negative and postitive
+
+					# NUMPY DATA TYPES
+int - int8 int16 int32 int64 -->(signed types which means it also have negative and values)
+uint8 uint16 uint32 uint64 --> (unsigned data types which means it does have only postive values)
+bool -(True False)
+
+<object>.dtype   #gives data type of the elements inside the array
+np.<datatypename>(<object>)   #changes the current data type of the object
+np.array([1,2,3,4,5],dtype = "<datatype name/orshortform>")
+shortcuts for data type conversion
+i - integer
+b - boolean
+u - unsigned integer
+f - float
+c - complex float
+m - timedelta
+M - datetime
+O - object
+S - string
+U - unicode string
+V - fixed chunk of memory for other type ( void )
+						#NUMPY ARITHEMATIC OPERATORS
+a+b                 np.add(a,b)                     you can use any method both methods are correct for each and every one
+a-b	         np.subtract(a,b)
+a*b                  np.multiply(a,b)
+a/b                  np.divide(a,b)                                          a and b are arrays or integers
+a%b                 np.mod(a,b)
+a**b                  np.power(a,b)
+1/a                    np.reciprocal(a)
+
+np.max(<array>,axis =#if needed like for 2 and 3 dimensional>)
+np.min(<array>,axis =#if needed like for 2 and 3 dimensional>)
+np.argmin(<array>,axis =#if needed like for 2 and 3 dimensional>)
+np.argmax(<array>,axis =#if needed like for 2 and 3 dimensional>)
+np.sqrt(<array>,axis =#if needed like for 2 and 3 dimensional>)
+np.sin(<array>,axis =#if needed like for 2 and 3 dimensional>)
+np.cos(<array>,axis =#if needed like for 2 and 3 dimensional>)
+np.cumsum(<array>,axis =#if needed like for 2 and 3 dimensional>)     #community sum or tree type adding haha maine hi rkha hai naam srry
+
+numpy default angle is in "Radians"
+                                                                        #SHAPING AND RESHAPING ARRAYS
+<object>.shape(x,y)                 #for two dimensional shaping from undimensional array where x tends to rows and y tends to columns
+<object>.reshape(x,y)               #reshapes any array to this shit
+now for higher dimensions
+<object>reshape(x,y,z,l)                  the last parameter tends to size of columns(simply sabse andr waale ke )
+				and the first parameters are the no. of rows whitin every progressive
+				square bracketttt
+		to shape or to reshape keep in mind that the array must have amount of elements
+		which are equal to the *product of x and y* lly *product of all parameters x*y*z*l *
+
+
+					#BROADCASTING
+rule 1--> think like it is a matrix
+rule 2--> for 2 matrices its like comparision...
+		r1-->dono ki shapes ya to exact same honi chahiye ya phir ek element 1 hona chahiye kisi ki alternative postion ma
+rule 3---> jake vdo tutorial dekh
+likh k nhi bataya ja payega
+
+					#Indexing and slicing in Numpy Array
+---For I D
+as we treat list Indexing will going to be same from l to r its positive[0,inf) from r to l its negative[-1,-inf)
+we slice it same as we did it to list like <name>[start:stop:step]
+
+for 2 D
+it is like nested list we will first check which block it is and index would be like <objname>[row,column]
+
+we slice it like <name>[row,column<start>:stop:step]          chect if start could take row and column too
+
+for 3D
+its like extended version of 2D
+
+					#Itteration of Numpy Array
+for iterating it we can use numpy array,,,,,,, as many times like if array is 3 dimen then three for loops are needed
+we can use
+np.diter() method
+like for i in np.diter(<name>):
+	print(i)
+it will iterate no matter what is the dimension of the array
+
+if we have to itterate and change the data type of every single element after itereation we have to use
+"flag" parameter embedded "buffered" in it
+buffer creates a temporary storage where it can get converted and stored after giving output in different datatype
+then we can use "op_dtype" function and embedding "S" in it which specifies converting in to string
+
+for i in np.ditter(<array>,flags = ["buffered"],op_dtypes = ["S"]):
+	print(i)
+
+#another way of doing this is using np.denumerate(<array>) function which involves itterating and specifieng the index of the
+particular value, it takes two values one for specifing index and one for value
+for i<its for index> , d<its for iterable> in np.denumerate(<array>):
+	print(i,d)
+					#copy and view
+both are used to kinda copy a array but have a difference that view is actually having the memory address as
+the original array while copy array has different memory address
+so on coping and changing in original array the copied array would be the same it was before
+while view is destined to change on changing the original one....(view as name says its like peeking inside the array)
+np.copy(>array<)
+np.view(>array<)
+
+					#Joining arrays
+it just mean to covert many arrays into single one.....
+$via concatenate
+np.concatenate((array1,array2),axis = <0,1,2>)
+axis 0 =  pata karo
+axis 1 = x axis horizontal
+axis 2 = pata karo
+$stack function
+same as stack function and calling is same too
+whats different is just the way it works the output it gives it increases one dimension pata nhi ku but hnnn and concatenate has
+tendancy ki wo dimensino nhi badhayega agar x axis pe kra jaye to but stack badha dega
+instead of using axis we can use hstack vstack and dstack
+					#numpy functions
+
+
+
+
+
+
+
+
+
+
+
+
+
